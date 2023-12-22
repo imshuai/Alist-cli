@@ -1,0 +1,27 @@
+before:
+  hooks:
+    - go mod tidy
+builds:
+  -
+    env:
+      - CGO_ENABLED=0
+    goos: # 编译平台列表 
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - arm
+      - arm64
+      - "386"
+      - amd64
+    goarm:
+      - "7"
+    ldflags: 
+      - "-s -w"
+checksum:
+  name_template: 'checksums.txt'
+archives:
+  - 
+    format: binary
+    name_template: '{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ with .Arm }}v{{ . }}{{ end }}'
+    
