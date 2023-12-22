@@ -1,3 +1,4 @@
+project_name: alist-cli
 before:
   hooks:
     - go mod tidy
@@ -23,5 +24,5 @@ checksum:
 archives:
   - 
     format: binary
-    name_template: '{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ with .Arm }}v{{ . }}{{ end }}'
+    name_template: '{{ tolower .ProjectName }}-v{{ .Version }}-{{ .Os }}-{{ .Arch }}{{ with .Arm }}v{{ . }}{{ end }}'
     
